@@ -1,0 +1,88 @@
+.container-genoma{
+    display: flex;
+    flex-direction: column;
+}
+
+.div-h2{
+    display: flex;
+    justify-content: center;
+}
+h2{
+    margin: -32px;
+    /* margin-top: 15px; */
+}
+
+.div-genoma {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 25px;
+    height: 100vh;
+    
+}
+.list-genomas{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: scroll;
+    margin-bottom: 150px; 
+}
+.list-genomas::-webkit-scrollbar{
+    display: none;
+}
+
+.cart-genoma {
+    width: 400px;
+    height: 250px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    justify-self: center;
+    
+    background: #820081;
+    color: #000;
+
+    padding: 8px;
+    margin: 10px;
+
+    border-radius: 10px;
+    
+    cursor: pointer; 
+    transition: 0.19s;
+}
+.cart-genoma:hover, .cart-genoma:focus { 
+    transform: scale(1.08);
+}
+
+.close-modal-genoma{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+.close-genoma{
+
+    display: flex;
+    justify-content: center;
+
+    width: min-content;
+    height: min-content;
+
+    background: #fe59c2;
+    color: #000;
+
+    border-radius: 5px;
+
+    margin: 0;
+    margin-top: 22px;
+    margin-right: 28px;
+    padding: 10px 20px;
+
+    cursor: pointer;
+}
+strong{
+    margin: 0;
+    padding: 0;
+}
+
