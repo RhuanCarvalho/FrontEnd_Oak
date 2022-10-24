@@ -71,12 +71,12 @@ export function ShowGenoma(props: IProps) {
 
     const convertDate = (date: Date) => {
         var _data = new Date(date)
-        return `${_data.getUTCDate().toLocaleString()}/${_data.getUTCMonth().toLocaleString()}/${_data.getUTCFullYear()}`
+        return `${_data.getUTCDate().toLocaleString()}/${Number(_data.getUTCMonth().toLocaleString())+1}/${_data.getUTCFullYear()}`
     }
 
     useEffect(() => {
         getTrainings();
-        console.log(trainings ? trainings[0].dia.dia : 0)
+        // console.log(trainings ? trainings[0].dia.dia : 0)
     }, [])
 
 
