@@ -5,8 +5,8 @@ import { ApexOptions } from "apexcharts";
 import { api } from "../services/Api";
 import { useEffect } from 'react';
 import { Box, Modal } from "@mui/material";
-import { ShowGenomaGraphCandleTrade } from "./ShowGenomaGraphCandleTrade";
 import { ShowGenomaGraphCandleTradeOfTest } from './ShowGenomaGraphCandleTradeOfTest';
+import { ShowGenomaGraphEvulotionMoneyInDayOfTest } from './ShowGenomaGraphEvulotionMoneyInDayOfTest';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -82,7 +82,7 @@ export function ShowGenomaGraphCandleTrainingOfTest(props: IProps) {
                 },
             },
             stroke: {
-                width: [1, 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5]
+                width: [1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
             },
             tooltip: {
                 shared: false,
@@ -128,7 +128,7 @@ export function ShowGenomaGraphCandleTrainingOfTest(props: IProps) {
 
     const convertDate = (date: Date) => {
         var _data = new Date(date)
-        return `${_data.getUTCDate().toLocaleString()}/${Number(_data.getUTCMonth().toLocaleString())+1}/${_data.getUTCFullYear()}`
+        return `${_data.getUTCDate().toLocaleString()}/${Number(_data.getUTCMonth().toLocaleString()) + 1}/${_data.getUTCFullYear()}`
     }
 
     const getDataHistTrades = async () => await api
@@ -154,10 +154,14 @@ export function ShowGenomaGraphCandleTrainingOfTest(props: IProps) {
                     width={800}
                     height={550}
                 />
+                <ShowGenomaGraphEvulotionMoneyInDayOfTest id_training={props.training.id} />
             </div>
             <div className="history-trades">
                 <div className="h3-pers">
-                    <h3><strong>Lista Trades - {convertDate(props.training.dia.dia)} {}</strong></h3>
+                    <h3><strong>Lista Trades - {convertDate(props.training.dia.dia)} <div style={props.training.resultado_diario_valor >= 0 ? { color: "#00FF00" } : { color: "#FF0000" }}>
+                        <b style={{ color: "#000" }}>Total :</b> R$ {props.training.resultado_diario_valor.toFixed(2)}
+                    </div>
+                    </strong></h3>
                     <h6>(Scrolling)</h6>
                 </div>
                 <div className="list-history-trades">
@@ -178,24 +182,24 @@ export function ShowGenomaGraphCandleTrainingOfTest(props: IProps) {
                         ))
                     }
                     <Modal
-                    open={show}
-                    onClose={handleClose}
-                >
-                    <Box sx={style}>
-                        <div className="close-modal-training">
-                            <div className="close-training" onClick={handleClose}>
-                                <strong>Close</strong>
+                        open={show}
+                        onClose={handleClose}
+                    >
+                        <Box sx={style}>
+                            <div className="close-modal-training">
+                                <div className="close-training" onClick={handleClose}>
+                                    <strong>Close</strong>
+                                </div>
                             </div>
-                        </div>
-                        {
-                            history ?
-                                <ShowGenomaGraphCandleTradeOfTest historyTrade={history} />
-                            :<div>
-                                History Trade Não Encontrado!
-                            </div>
-                        }
-                    </Box>
-                </Modal>
+                            {
+                                history ?
+                                    <ShowGenomaGraphCandleTradeOfTest historyTrade={history} />
+                                    : <div>
+                                        History Trade Não Encontrado!
+                                    </div>
+                            }
+                        </Box>
+                    </Modal>
                 </div>
             </div>
         </div>

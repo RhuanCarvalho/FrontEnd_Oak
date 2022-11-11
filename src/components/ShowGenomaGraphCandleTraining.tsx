@@ -6,6 +6,7 @@ import { api } from "../services/Api";
 import { useEffect } from 'react';
 import { Box, Modal } from "@mui/material";
 import { ShowGenomaGraphCandleTrade } from "./ShowGenomaGraphCandleTrade";
+import { ShowGenomaGraphEvulotionMoneyInDay } from './ShowGenomaGraphEvulotionMoneyInDay';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -81,7 +82,7 @@ export function ShowGenomaGraphCandleTraining(props: IProps) {
                 },
             },
             stroke: {
-                width: [1, 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5]
+                width: [1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
             },
             tooltip: {
                 shared: false,
@@ -95,6 +96,13 @@ export function ShowGenomaGraphCandleTraining(props: IProps) {
                         ''
                     )
                 }]
+            },
+            title: {
+                text: 'Graph Diário',
+                align: 'left',
+                style: {
+                    color: '#fff'
+                }
             },
             xaxis: {
                 type: 'datetime',
@@ -148,10 +156,15 @@ export function ShowGenomaGraphCandleTraining(props: IProps) {
                     width={800}
                     height={550}
                 />
+                <ShowGenomaGraphEvulotionMoneyInDay id_training={props.training.id} />
             </div>
             <div className="history-trades">
                 <div className="h3-pers">
-                    <h3><strong>Lista Trades</strong></h3>
+                    <h3><strong>Lista Trades
+                        <div style={props.training.resultado_diario_valor >= 0 ? { color: "#00FF00" } : { color: "#FF0000" }}>
+                            <b style={{ color: "#000" }}>Total :</b> R$ {props.training.resultado_diario_valor.toFixed(2)}
+                        </div>
+                    </strong></h3>
                     <h6>(Scrolling)</h6>
                 </div>
                 <div className="list-history-trades">
@@ -172,24 +185,24 @@ export function ShowGenomaGraphCandleTraining(props: IProps) {
                         ))
                     }
                     <Modal
-                    open={show}
-                    onClose={handleClose}
-                >
-                    <Box sx={style}>
-                        <div className="close-modal-training">
-                            <div className="close-training" onClick={handleClose}>
-                                <strong>Close</strong>
+                        open={show}
+                        onClose={handleClose}
+                    >
+                        <Box sx={style}>
+                            <div className="close-modal-training">
+                                <div className="close-training" onClick={handleClose}>
+                                    <strong>Close</strong>
+                                </div>
                             </div>
-                        </div>
-                        {
-                            history ?
-                                <ShowGenomaGraphCandleTrade historyTrade={history} />
-                            :<div>
-                                History Trade Não Encontrado!
-                            </div>
-                        }
-                    </Box>
-                </Modal>
+                            {
+                                history ?
+                                    <ShowGenomaGraphCandleTrade historyTrade={history} />
+                                    : <div>
+                                        History Trade Não Encontrado!
+                                    </div>
+                            }
+                        </Box>
+                    </Modal>
                 </div>
             </div>
         </div>
