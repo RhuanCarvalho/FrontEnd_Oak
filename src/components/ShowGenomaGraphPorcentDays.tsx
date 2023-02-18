@@ -62,7 +62,7 @@ export function ShowGenomaGraphPorcentDays(props: IProps) {
                     labels: {
                         formatter: (value: any) => {
                             var _data = new Date(value)
-                            return `${_data.getUTCDate().toLocaleString()}/${_data.getUTCMonth().toLocaleString()}/${_data.getUTCFullYear()}`
+                            return `${_data.getUTCDate().toLocaleString()}/${Number(_data.getUTCMonth().toLocaleString())+1}/${_data.getUTCFullYear()}`
                         },
                         show: false
         
